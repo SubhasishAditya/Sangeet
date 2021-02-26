@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>play</title>
+  <link rel="stylesheet" href="play.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><h1 class="animate__animated animate__pulse animate__infinite	infinite" > <i class="fas fa-headphones-alt"></i> Sangeet</h1></div>
+        <div class="menu">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="artist.html"><i class="fas fa-headphones"></i> Artist</a>
+            <a href="type.html"><i class="fas fa-headphones"></i> Type</a>
+
+            <a href="#"><i class="fas fa-address-card"></i> About</a>
+            <a href="#">etc</a>
+        </div>
+    </nav>
+
+  
+  <div class="main">
+    
+  	<p id="logo"><i class="fa fa-music"></i>demo</p>
+    
+    <!--- left part --->
+     <div class="left">
+
+      <!--- song img --->
+      <img id="track_image">
+         <div class="volume">
+            
+            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+            <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume"> 
+            <p id="volume_show">90</p> 
+         </div>
+
+     </div>
+ 
+
+     <!--- right part --->
+  	 <div class="right">
+
+        <div class="show_song_no">
+          <p id="present">1</p>
+          <p>/</p>
+          <p id="total">5</p>
+        </div>
+
+       <!--- song title & artist name --->
+      <p id="title">title.mp3</p>
+      <p id="artist">Artist name</p>
+
+      <!--- middle part --->
+  	 	<div class="middle">
+  	       <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+      	   <button onclick="justplay()" onclick="getCurTime()"id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
+  	       <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+  	   </div>
+
+       <!--- song duration part --->
+        <div class="duration">
+           <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
+        </div>
+           <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
+  	</div>
+
+
+  </div>
+  <script>
+
+let previous = document.querySelector('#prev');
+let play = document.querySelector('#play');
+let next = document.querySelector('#next');
+let title = document.querySelector('#title');
+let recent_volume= document.querySelector('#volume');
+let volume_show = document.querySelector('#volume_show');
+let slider = document.querySelector('#duration_slider');
+let show_duration = document.querySelector('#show_duration');
+let track_image = document.querySelector('#track_image');
+let auto_play = document.querySelector('#auto');
+let present = document.querySelector('#present');
+let total = document.querySelector('#total');
+let artist = document.querySelector('#artist');
+
+
+
+let timer;
+let autoplay = 0;
+
+let index_no = 0;
+let Playing_song = false;
+
+//create a audio Element
+let track = document.createElement('audio');
+
+
+//All songs list
+let All_song = [
+   {
+     name: "Landscape [NCS]",
+     path: "media/mp3/Jarico - Landscape [NCS].mp3",
+     img: "media/images/ncs.jpg",
+     singer: "NCS | Jarico"
+   },
+   {
+     name: "Childhood ",
+     path: "media/mp3/Ay.mp3",
+     img: "media/images/R&F.jpg",
+     singer: "Rauf & Faik "
+   },
+   {
+     name: "Take Away Happier Faded [Remix Mashup]",
+     path: "media/mp3/Take Away Happier Faded [Remix Mashup].mp3",
+     img: "media/images/Marshmello.jpg",
+     singer: ""
+   },
+   {
+     name: "Game of Thrones ",
+     path: "media/mp3/Game of Thrones Title.mp3",
+     img: "media/images/instru.jpg",
+     singer: ""
+   },
+   {
+     name: "fifth song",
+     path: "music/song5.mp3",
+     img: "media/images/bg1.jpg",
+     singer: "5"
+   }
+];
+
+
+// All functions
+
+
+// function load the track
+function load_track(index_no){
+	clearInterval(timer);
+	reset_slider();
+
+	track.src = All_song[index_no].path;
+	title.innerHTML = All_song[index_no].name;	
+	track_image.src = All_song[index_no].img;
+    artist.innerHTML = All_song[index_no].singer;
+    track.load();
+
+	timer = setInterval(range_slider ,1000);
+	total.innerHTML = All_song.length;
+	present.innerHTML = index_no + 1;
+}
+
+load_track(index_no);
+
+
+//mute sound function
+function mute_sound(){
+	track.volume = 0;
+	volume.value = 0;
+	volume_show.innerHTML = 0;
+}
+
+
+// checking.. the song is playing or not
+ function justplay(){
+ 	if(Playing_song==false){
+ 		playsong();
+
+ 	}else{
+ 		pausesong();
+ 	}
+ }
+
+
+// reset song slider
+ function reset_slider(){
+ 	slider.value = 0;
+ }
+
+// play song
+function playsong(){
+  track.play();
+  Playing_song = true;
+  play.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+}
+
+//pause song
+function pausesong(){
+	track.pause();
+	Playing_song = false;
+	play.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+}
+
+
+// next song
+function next_song(){
+	if(index_no < All_song.length - 1){
+		index_no += 1;
+		load_track(index_no);
+		playsong();
+	}else{
+		index_no = 0;
+		load_track(index_no);
+		playsong();
+
+	}
+}
+
+
+// previous song
+function previous_song(){
+	if(index_no > 0){
+		index_no -= 1;
+		load_track(index_no);
+		playsong();
+
+	}else{
+		index_no = All_song.length;
+		load_track(index_no);
+		playsong();
+	}
+}
+
+
+// change volume
+function volume_change(){
+	volume_show.innerHTML = recent_volume.value;
+	track.volume = recent_volume.value / 100;
+}
+
+// change slider position 
+function change_duration(){
+	slider_position = track.duration * (slider.value / 100);
+	track.currentTime = slider_position;
+}
+
+// autoplay function
+function autoplay_switch(){
+	if (autoplay==1){
+       autoplay = 0;
+       auto_play.style.background = "rgba(255,255,255,0.2)";
+	}else{
+       autoplay = 1;
+       auto_play.style.background = "rgba(30, 143, 255, 0.568)";
+	}
+}
+
+
+function range_slider(){
+	let position = 0;
+        
+        // update slider position
+		if(!isNaN(track.duration)){
+		   position = track.currentTime * (100 / track.duration);
+		   slider.value =  position;
+	      }
+
+       
+       // function will run when the song is over
+       if(track.ended){
+       	 play.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+           if(autoplay==1){
+		       index_no += 1;
+		       load_track(index_no);
+		       playsong();
+           }
+	    }
+     }
+     
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="type.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  </head>
+  <body>
+    <nav>
+        <div class="logo"><h1 class="animate__animated animate__pulse animate__infinite	infinite" > <i class="fas fa-headphones-alt"></i> Sangeet</h1></div>
+        <div class="menu">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="artist.html"><i class="fas fa-headphones"></i> Artist</a>
+            <a href="type.html"><i class="fas fa-headphones"></i> Type</a>
+            <a href="#"><i class="fas fa-address-card"></i> About</a>
+            <a href="#">etc</a>
+        </div>
+    </nav>
+    <div class="slider owl-carousel">
+      <div class="card">
+        <div class="img"><img src="media/images/instru.jpg" alt=""></div>
+        <div class="content">
+          <div class="title">INSTRUMENTAL</div>
+          <div class="sub-title">Instrumental</div>
+          <div class="btn">
+            <a href="play.html"><button>Listen</button></a>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="img"><img src="media/images/Workout.jpg" alt=""></div>
+        <div class="content">
+          <div class="title">WORKOUT</div>
+          <div class="sub-title">Hindi/English etc</div>
+          <div class="btn">
+            <a href="play.html"><button>Listen</button></a>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="img"><img src="media/images/travel.jpg" alt=""></div>
+        <div class="content">
+          <div class="title">TRAVEL</div>
+          <div class="sub-title">Hindi/English etc</div> 
+          <div class="btn">
+            <a href="play.html"><button>Listen</button></a>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="img"><img src="media/images/kirtan.jpg" alt=""></div>
+        <div class="content">
+          <div class="title">Bhajans</div>
+          <div class="sub-title">Religious/Hindu</div> 
+          <div class="btn">
+            <a href="play.html"><button>Listen</button></a>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="img"><img src="media/images/Martin-Garrix EDM.jpg" alt=""></div>
+        <div class="content">
+          <div class="title">EDM</div>
+          <div class="sub-title">Martin Garrix|NCS</div> 
+          <div class="btn">
+            <a href="play.html"><button>Listen</button></a>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="img"><img src="media/images/ro.jpg" alt=""></div>
+        <div class="content">
+          <div class="title">Soft/Romantic</div>
+          <div class="sub-title">Hindi/Urdu</div> 
+          <div class="btn">
+            <a href="play.html"><button>Listen</button></a>
+          </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+
+      $(".slider").owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 2000, //2000ms = 2s;
+        autoplayHoverPause: true,
+      });
+    </script>
+
+  </body>
+</html>
+

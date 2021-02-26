@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+nav{
+    height: 10vh;
+    width: 100%;
+    background:rgba(70, 131, 180, 0.445);
+    color:white;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+nav .logo{
+    width: 25%;
+    text-align: center;
+    color:white;
+    
+}
+nav .menu{ 
+    width: 40%;
+    display:flex;
+    justify-content: space-around;
+
+}
+nav .menu a{
+    width: 25%;
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    
+}
+body{
+  
+  height: 100vh;
+  width: 100%;
+  place-items: center;
+  text-align: center;
+  background:linear-gradient( rgb(79, 149, 207),rgb(0, 0, 0));
+  background-size: cover;
+  
+}
+.slider{
+    margin-top: 7%;
+  max-width: 100%;
+  display:flex;
+}
+.slider .card{
+  height:60vh;
+  width: 85%;
+  margin: 0 5px;
+  background:wheat;
+  border-radius: 10px;
+ 
+  
+}
+.slider .card .img{
+  height: 60%;
+  width: 100%;
+
+}
+.slider .card .img img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  
+  
+}
+.slider .card .content{
+  padding: 10px 20px;
+}
+.card .content .title{
+  font-size: 25px;
+  font-weight: 600;
+}
+.card .content .sub-title{
+  font-size: 20px;
+  font-weight: 600;
+  color:steelblue;
+  line-height: 20px;
+}
+
+.card .content .btn{
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+ 
+}
+.card .content .btn button{
+  background:rgb(0, 100, 158);
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 250px;
+}
+.card .content .btn button:hover{
+  transform: scale(1.1);
+}
